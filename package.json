@@ -1,0 +1,168 @@
+{
+  "name": "contract-to-ts",
+  "displayName": "contract-to-ts",
+  "description": "接口契约生成前端ts",
+  "version": "0.0.8",
+  "author": "zs-liu",
+  "publisher": "zs-liu",
+  "icon": "images/icon.png",
+  "engines": {
+    "vscode": "^1.99.3"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "contract-to-ts.helloWorld",
+        "title": "Hello World"
+      },
+      {
+        "command": "contract-to-ts.init",
+        "title": "init(CONTRACT-TO-TS PROJECT)"
+      },
+      {
+        "command": "contract-to-ts.addInterface",
+        "title": "addInterface(CONTRACT-TO-TS)"
+      },
+      {
+        "command": "contract-to-ts.viewInterface",
+        "title": "viewInterface(CONTRACT-TO-TS)",
+        "icon": "$(eye)"
+      },
+      {
+        "command": "contract-to-ts.addInterfaceToProject",
+        "title": "addInterfaceToProject(CONTRACT-TO-TS)",
+        "icon": "$(add)"
+      },
+      {
+        "command": "contract-to-ts.addInterfaceFromService",
+        "title": "addInterfaceFromService(CONTRACT-TO-TS)",
+        "icon": "$(add)"
+      },
+      {
+        "command": "contract-to-ts.updateInterface",
+        "title": "updateInterface(CONTRACT-TO-TS)",
+        "icon": "$(sync)"
+      },
+      {
+        "command": "contract-to-ts.linkToInterface",
+        "title": "linkToInterface(CONTRACT-TO-TS)",
+        "icon": "$(link)"
+      },
+      {
+        "command": "contract-to-ts.deleteInterface",
+        "title": "deleteInterface(CONTRACT-TO-TS)",
+        "icon": "$(notebook-delete-cell)"
+      }
+    ],
+    "configuration": {
+      "title": "contract-to-ts",
+      "properties": {
+        "contract-to-ts.accessToken": {
+          "type": "string",
+          "default": "",
+          "description": "MOM平台accessToken"
+        }
+      }
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "contract-to-ts",
+          "title": "契约转TS",
+          "icon": "images/icon.png"
+        }
+      ]
+    },
+    "views": {
+      "contract-to-ts": [
+        {
+          "id": "interface-manager",
+          "name": "接口TS管理",
+          "icon": "images/icon.png"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "interface-manager",
+        "contents": "请点击完成项目初始化配置，以使用contract-to-ts插件\n[初始化类型文件保存目录](command:contract-to-ts.init)"
+      }
+    ],
+    "menus": {
+      "view/item/context": [
+        {
+          "command": "contract-to-ts.addInterface",
+          "when": "viewItem == interface-manager",
+          "group": "inline"
+        },
+        {
+          "command": "contract-to-ts.addInterfaceToProject",
+          "when": "viewItem == project-folder",
+          "group": "inline@1"
+        },
+        {
+          "command": "contract-to-ts.addInterfaceFromService",
+          "when": "viewItem == service-item",
+          "group": "inline@1"
+        },
+        {
+          "command": "contract-to-ts.viewInterface",
+          "when": "viewItem == interface-item",
+          "group": "inline@1"
+        },
+        {
+          "command": "contract-to-ts.updateInterface",
+          "when": "viewItem == interface-item",
+          "group": "inline@2"
+        },
+        {
+          "command": "contract-to-ts.linkToInterface",
+          "when": "viewItem == interface-item",
+          "group": "inline@3"
+        },
+        {
+          "command": "contract-to-ts.deleteInterface",
+          "when": "viewItem == interface-item",
+          "group": "inline@4"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "axios": "^1.7.9"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.99.3",
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "16.x",
+    "@typescript-eslint/eslint-plugin": "^5.56.0",
+    "@typescript-eslint/parser": "^5.56.0",
+    "eslint": "^8.36.0",
+    "glob": "^8.1.0",
+    "mocha": "^10.2.0",
+    "typescript": "^4.9.5",
+    "ts-loader": "^9.4.2",
+    "webpack": "^5.76.3",
+    "webpack-cli": "^5.0.1",
+    "@vscode/test-electron": "^2.3.0"
+  },
+  "license": "UNLICENSED"
+}
